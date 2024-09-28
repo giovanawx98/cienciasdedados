@@ -1,59 +1,46 @@
-import { getCSS, tickConfig } from "./common.js"
+export function areasDeEstudoMaisEscolhidasBrasil() {
+ 
+    const dadosBrasil = {
+        "Exatas": 3500000,
+        "Humanas": 4500000,
+        "Biológicas": 2000000,
+        "Outras": 1000000
+    };
 
-async function areasDeEstudoMaisEscolhidas() {
-    const url = 'https://raw.githubusercontent.com/guilhermeonrails/api/main/areas-estudo-brasil.json'
-    const res = await fetch(url)
-    const dados = await res.json()
-    const nomeDasAreas = Object.keys(dados)
-    const quantidadeDeEstudantes = Object.values(dados)
+    const nomeDasAreas = Object.keys(dadosBrasil);
+    const quantidadeDeEstudantes = Object.values(dadosBrasil);
 
-    const data = [
+    const dataBrasil = [
         {
             x: nomeDasAreas, 
             y: quantidadeDeEstudantes, 
             type: 'bar',
             marker: {
-                color: getCSS('--primary-color')
+                color: '#DB7093' 
             }
         }
-    ]
+    ];
 
-    const laytout = {
-        plot_bgcolor: getCSS('--bg-color'),
-        paper_bgcolor: getCSS('--bg-color'),
+    const layoutBrasil = {
+        plot_bgcolor: '#008B8B',  
+        paper_bgcolor: '#BC8F8F', 
         title: {
             text: 'Áreas de Estudo Mais Escolhidas no Brasil',
-            x: 0,
             font: {
-                color: getCSS('--primary-color'),
-                size: 30,
-                font: getCSS('--font')
+                color: '#DB7093', 
+                size: 30
             }
         },
         xaxis: {
-            tickfont: tickConfig,
-            title: {
-                text: 'Áreas de Estudo',
-                font: {
-                    color: getCSS('--secondary-color')
-                }
-            }
+            title: { text: 'Áreas de Estudo', font: { color: '#BC8F8F' } }
         },
         yaxis: {
-            tickfont: tickConfig,
-            title: {
-                text: 'Número de Estudantes',
-                font: {
-                    color: getCSS('--secondary-color')
-                }
-            }
+            title: { text: 'Número de Estudantes', font: { color: '#BC8F8F' } }
         }
-    }
+    };
 
-    const grafico = document.createElement('div')
-    grafico.className = 'grafico'
-    document.getElementById('graficos-container').appendChild(grafico)
-    Plotly.newPlot(grafico, data, laytout)
+    const graficoBrasil = document.createElement('div');
+    graficoBrasil.className = 'grafico';
+    document.getElementById('graficos-container').appendChild(graficoBrasil);
+    Plotly.newPlot(graficoBrasil, dataBrasil, layoutBrasil);
 }
-
-areasDeEstudoMaisEscolhidas()
