@@ -1,4 +1,4 @@
-const url = 'https://raw.githubusercontent.com/guilhermeonrails/api/main/dados-parana.json'
+const url = 'https://raw.githubusercontent.com/giovanawx98/cienciasdedados/api/main/dados-parana.json'
 
 async function vizualizarPreferenciasEstudoParana() {
     const res = await fetch(url)
